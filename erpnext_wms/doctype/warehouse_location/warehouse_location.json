@@ -6,9 +6,16 @@
   "engine": "InnoDB",
   "field_order": [
     "location_details",
+    "warehouse",
     "location_name",
     "location_type",
+    "bin_coordinates",
+    "bin_x",
+    "bin_y",
+    "bin_z",
     "capacity",
+    "file_info",
+    "file_creation",
     "status"
   ],
   "fields": [
@@ -16,6 +23,13 @@
       "fieldname": "location_details",
       "fieldtype": "Section Break",
       "label": "Location Details"
+    },
+    {
+      "fieldname": "warehouse",
+      "fieldtype": "Link",
+      "label": "Warehouse",
+      "options": "Warehouse",
+      "reqd": 1
     },
     {
       "fieldname": "location_name",
@@ -32,16 +46,53 @@
       "reqd": 1
     },
     {
+      "fieldname": "bin_coordinates",
+      "fieldtype": "Section Break",
+      "label": "Bin Coordinates (3D)"
+    },
+    {
+      "fieldname": "bin_x",
+      "fieldtype": "Int",
+      "label": "Bin X Position",
+      "reqd": 1,
+      "default": 0
+    },
+    {
+      "fieldname": "bin_y",
+      "fieldtype": "Int",
+      "label": "Bin Y Position",
+      "reqd": 1,
+      "default": 0
+    },
+    {
+      "fieldname": "bin_z",
+      "fieldtype": "Int",
+      "label": "Bin Z Position",
+      "reqd": 1,
+      "default": 0
+    },
+    {
       "fieldname": "capacity",
       "fieldtype": "Float",
       "label": "Capacity (units)"
     },
     {
+      "fieldname": "file_info",
+      "fieldtype": "Section Break",
+      "label": "File Information"
+    },
+    {
+      "fieldname": "file_creation",
+      "fieldtype": "Link",
+      "label": "File Number",
+      "options": "File Creation"
+    },
+    {
       "fieldname": "status",
       "fieldtype": "Select",
       "label": "Status",
-      "options": "Active\nInactive",
-      "default": "Active"
+      "options": "Empty\nOccupied",
+      "default": "Empty"
     }
   ],
   "modified": "2026-07-31T19:00:00.000000",
