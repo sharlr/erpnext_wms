@@ -1,4 +1,5 @@
 {
+  "autoname": "IM-.YYYY.-.##",
   "creation": "2026-07-31T19:00:00.000000",
   "docstatus": 0,
   "doctype": "DocType",
@@ -89,6 +90,7 @@
   ],
   "modified": "2026-07-31T19:00:00.000000",
   "modified_by": "Administrator",
+  "module": "File Creation",
   "name": "Import File",
   "owner": "Administrator",
   "permissions": [

@@ -2,6 +2,7 @@ import frappe
 
 def after_install():
     """Create roles after app installation"""
+    frappe.db.set_value("Module", "File Creation", "module_name", "erpnext_wms")
     frappe.db.set_value("Module", "WMS Warehouse", "module_name", "erpnext_wms")
     
     roles = [

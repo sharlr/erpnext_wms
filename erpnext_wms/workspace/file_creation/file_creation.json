@@ -1,0 +1,43 @@
+{
+  "charts": [],
+  "content": "[{\"id\": \"hf8g5kwsky\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>File Creation</b></span>\", \"col\": 12}}, {\"id\": \"j8xcm2i0wd\", \"type\": \"paragraph\", \"data\": {\"text\": \"<p>Create Import and Export files. Documents are auto-numbered as IM-YYYY-## and EX-YYYY-##.</p>\", \"col\": 12}}, {\"id\": \"wlm959das5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Import File\", \"col\": 3}}, {\"id\": \"ifej5kismm\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Export File\", \"col\": 3}}]",
+  "creation": "2026-08-01 00:00:00.000000",
+  "custom_blocks": [],
+  "docstatus": 0,
+  "doctype": "Workspace",
+  "for_user": "",
+  "hide_custom": 0,
+  "icon": "file",
+  "idx": 0,
+  "is_hidden": 0,
+  "label": "File Creation",
+  "links": [],
+  "modified": "2026-08-01 00:00:00.000000",
+  "modified_by": "Administrator",
+  "module": "File Creation",
+  "name": "File Creation",
+  "number_cards": [],
+  "owner": "Administrator",
+  "parent_page": "",
+  "public": 1,
+  "quick_lists": [],
+  "restrict_to_domain": "",
+  "roles": [],
+  "sequence_id": 0.1,
+  "shortcuts": [
+    {
+      "doc_view": "List",
+      "label": "Import File",
+      "link_to": "Import File",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
+      "label": "Export File",
+      "link_to": "Export File",
+      "type": "DocType"
+    }
+  ],
+  "title": "File Creation",
+  "type": "Workspace"
+}
