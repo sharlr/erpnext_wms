@@ -1,0 +1,94 @@
+{
+  "creation": "2026-07-31T19:00:00.000000",
+  "docstatus": 0,
+  "doctype": "DocType",
+  "document_type": "Document",
+  "editable_grid": 0,
+  "engine": "InnoDB",
+  "field_order": [
+    "adjustment_details",
+    "warehouse",
+    "adjustment_date",
+    "reason",
+    "adjustment_items",
+    "summary",
+    "total_variance_value"
+  ],
+  "fields": [
+    {
+      "fieldname": "adjustment_details",
+      "fieldtype": "Section Break",
+      "label": "Adjustment Details"
+    },
+    {
+      "fieldname": "warehouse",
+      "fieldtype": "Link",
+      "label": "Warehouse",
+      "options": "Warehouse",
+      "reqd": 1
+    },
+    {
+      "fieldname": "adjustment_date",
+      "fieldtype": "Date",
+      "label": "Adjustment Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "fieldtype": "Select",
+      "label": "Reason",
+      "options": "Damage\nLoss\nShrinkage\nInventory Count",
+      "reqd": 1
+    },
+    {
+      "fieldname": "adjustment_items",
+      "fieldtype": "Table",
+      "label": "Items",
+      "options": "Adjustment Item"
+    },
+    {
+      "fieldname": "summary",
+      "fieldtype": "Section Break",
+      "label": "Summary"
+    },
+    {
+      "fieldname": "total_variance_value",
+      "fieldtype": "Currency",
+      "label": "Total Variance Value",
+      "read_only": 1
+    }
+  ],
+  "modified": "2026-07-31T19:00:00.000000",
+  "modified_by": "Administrator",
+  "name": "Stock Adjustment",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "WMS User",
+      "submit": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

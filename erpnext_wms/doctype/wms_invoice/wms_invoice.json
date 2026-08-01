@@ -1,0 +1,104 @@
+{
+  "creation": "2026-07-31T19:00:00.000000",
+  "docstatus": 0,
+  "doctype": "DocType",
+  "document_type": "Document",
+  "engine": "InnoDB",
+  "field_order": [
+    "invoice_details",
+    "customer",
+    "invoice_date",
+    "due_date",
+    "invoice_items",
+    "totals",
+    "total_amount",
+    "paid_amount",
+    "balance"
+  ],
+  "fields": [
+    {
+      "fieldname": "invoice_details",
+      "fieldtype": "Section Break",
+      "label": "Invoice Details"
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "options": "Customer",
+      "reqd": 1
+    },
+    {
+      "fieldname": "invoice_date",
+      "fieldtype": "Date",
+      "label": "Invoice Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "due_date",
+      "fieldtype": "Date",
+      "label": "Due Date"
+    },
+    {
+      "fieldname": "invoice_items",
+      "fieldtype": "Table",
+      "label": "Items",
+      "options": "Invoice Item"
+    },
+    {
+      "fieldname": "totals",
+      "fieldtype": "Section Break",
+      "label": "Totals"
+    },
+    {
+      "fieldname": "total_amount",
+      "fieldtype": "Currency",
+      "label": "Total Amount",
+      "read_only": 1
+    },
+    {
+      "fieldname": "paid_amount",
+      "fieldtype": "Currency",
+      "label": "Paid Amount"
+    },
+    {
+      "fieldname": "balance",
+      "fieldtype": "Currency",
+      "label": "Balance",
+      "read_only": 1
+    }
+  ],
+  "modified": "2026-07-31T19:00:00.000000",
+  "modified_by": "Administrator",
+  "name": "WMS Invoice",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "WMS Finance",
+      "submit": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}

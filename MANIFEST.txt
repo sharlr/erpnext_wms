@@ -1,0 +1,55 @@
+ERPNext WMS - Warehouse Management System v1.0.0
+=====================================================
+
+STRUCTURE:
+├── pyproject.toml          - Build configuration
+├── setup.py                - Legacy setup config
+├── README.md               - Documentation
+├── LICENSE                 - MIT License
+├── MANIFEST.txt            - This file
+└── erpnext_wms/            - Main app package
+    ├── __init__.py
+    ├── hooks.py
+    ├── version.py
+    ├── modules.txt
+    ├── patches.txt
+    └── doctype/
+        ├── import_file/
+        ├── export_file/
+        ├── stock_adjustment/
+        ├── wms_invoice/
+        ├── payment_voucher/
+        ├── import_item/
+        ├── export_item/
+        ├── adjustment_item/
+        ├── invoice_item/
+        ├── warehouse_location/
+        └── shipping_line/
+
+DOCTYPES INCLUDED:
+Primary:
+- Import File (IM-YYYY-MM-XXXXX)
+- Export File (EX-YYYY-MM-XXXXX)
+- Stock Adjustment (SA-YYYY-MM-XXXXX)
+- WMS Invoice (WMSINV-YYYY-MM-XXXXX)
+- Payment Voucher (PV-YYYY-XXXXX)
+
+Child Tables:
+- Import Item
+- Export Item
+- Adjustment Item
+- Invoice Item
+
+Master Data:
+- Warehouse Location
+- Shipping Line
+
+USER ROLES:
+- WMS User
+- WMS Finance
+- WMS Manager
+
+WORKFLOWS:
+- Import workflow (8 stages)
+- Export workflow (8 stages)
+- Stock Adjustment workflow (4 stages)

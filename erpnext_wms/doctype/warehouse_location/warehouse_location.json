@@ -1,0 +1,66 @@
+{
+  "creation": "2026-07-31T19:00:00.000000",
+  "docstatus": 0,
+  "doctype": "DocType",
+  "document_type": "Document",
+  "engine": "InnoDB",
+  "field_order": [
+    "location_details",
+    "location_name",
+    "location_type",
+    "capacity",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "location_details",
+      "fieldtype": "Section Break",
+      "label": "Location Details"
+    },
+    {
+      "fieldname": "location_name",
+      "fieldtype": "Data",
+      "label": "Location Name",
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "location_type",
+      "fieldtype": "Select",
+      "label": "Type",
+      "options": "Warehouse\nOpen Yard\nCold Storage",
+      "reqd": 1
+    },
+    {
+      "fieldname": "capacity",
+      "fieldtype": "Float",
+      "label": "Capacity (units)"
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Active\nInactive",
+      "default": "Active"
+    }
+  ],
+  "modified": "2026-07-31T19:00:00.000000",
+  "modified_by": "Administrator",
+  "name": "Warehouse Location",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "read": 1,
+      "role": "System Manager",
+      "write": 1
+    },
+    {
+      "read": 1,
+      "role": "WMS User"
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC"
+}

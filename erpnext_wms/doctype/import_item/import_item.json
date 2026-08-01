@@ -1,0 +1,14 @@
+{
+  "doctype": "DocType",
+  "name": "Import Item",
+  "document_type": "Child Table",
+  "fields": [
+    {"fieldname": "item_code", "fieldtype": "Link", "label": "Item", "options": "Item", "reqd": 1},
+    {"fieldname": "description", "fieldtype": "Data", "label": "Description"},
+    {"fieldname": "quantity", "fieldtype": "Float", "label": "Quantity", "reqd": 1},
+    {"fieldname": "weight", "fieldtype": "Float", "label": "Weight (kg)"},
+    {"fieldname": "rate", "fieldtype": "Currency", "label": "Rate"},
+    {"fieldname": "amount", "fieldtype": "Currency", "label": "Amount", "read_only": 1}
+  ],
+  "permissions": [{"role": "System Manager", "read": 1, "write": 1}]
+}

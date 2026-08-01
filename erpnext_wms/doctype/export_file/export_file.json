@@ -1,0 +1,116 @@
+{
+  "creation": "2026-07-31T19:00:00.000000",
+  "docstatus": 0,
+  "doctype": "DocType",
+  "document_type": "Document",
+  "editable_grid": 0,
+  "engine": "InnoDB",
+  "field_order": [
+    "export_details",
+    "company",
+    "customer",
+    "destination_country",
+    "export_items",
+    "financial_details",
+    "total_quantity",
+    "total_weight",
+    "total_value",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "export_details",
+      "fieldtype": "Section Break",
+      "label": "Export Details"
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "label": "Company",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "customer",
+      "fieldtype": "Link",
+      "label": "Customer",
+      "options": "Customer",
+      "reqd": 1
+    },
+    {
+      "fieldname": "destination_country",
+      "fieldtype": "Link",
+      "label": "Destination Country",
+      "options": "Country"
+    },
+    {
+      "fieldname": "export_items",
+      "fieldtype": "Table",
+      "label": "Items",
+      "options": "Export Item"
+    },
+    {
+      "fieldname": "financial_details",
+      "fieldtype": "Section Break",
+      "label": "Financial Details"
+    },
+    {
+      "fieldname": "total_quantity",
+      "fieldtype": "Float",
+      "label": "Total Quantity",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_weight",
+      "fieldtype": "Float",
+      "label": "Total Weight (kg)",
+      "read_only": 1
+    },
+    {
+      "fieldname": "total_value",
+      "fieldtype": "Currency",
+      "label": "Total Value",
+      "read_only": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "label": "Status",
+      "options": "Draft\nSubmitted\nIn Progress\nCompleted",
+      "default": "Draft"
+    }
+  ],
+  "modified": "2026-07-31T19:00:00.000000",
+  "modified_by": "Administrator",
+  "name": "Export File",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "submit": 1,
+      "write": 1
+    },
+    {
+      "create": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "WMS User",
+      "submit": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC",
+  "track_changes": 1
+}
