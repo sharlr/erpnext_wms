@@ -1,5 +1,4 @@
 {
-  "autoname": "EX-.YYYY.-.##",
   "creation": "2026-07-31T19:00:00.000000",
   "docstatus": 0,
   "doctype": "DocType",
@@ -8,6 +7,7 @@
   "engine": "InnoDB",
   "field_order": [
     "export_details",
+    "file_creation",
     "company",
     "customer",
     "destination_country",
@@ -23,6 +23,13 @@
       "fieldname": "export_details",
       "fieldtype": "Section Break",
       "label": "Export Details"
+    },
+    {
+      "fieldname": "file_creation",
+      "fieldtype": "Link",
+      "label": "File Number",
+      "options": "File Creation",
+      "reqd": 1
     },
     {
       "fieldname": "company",

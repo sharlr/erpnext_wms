@@ -60,9 +60,6 @@ scheduler_events = {
 }
 
 doc_events = {
-    "File Creation": {
-        "on_submit": "erpnext_wms.doctype.file_creation.file_creation.FileCreation.on_submit"
-    },
     "Import File": {
         "on_submit": "erpnext_wms.doctype.import_file.import_file.on_submit_import_file"
     },
