@@ -8,6 +8,7 @@ class WarehouseVisualization {
 		this.warehouseData = null;
 		this.raycaster = new THREE.Raycaster();
 		this.mouse = new THREE.Vector2();
+		this.controls = null;
 
 		this.init();
 		this.setupEventListeners();
@@ -16,45 +17,63 @@ class WarehouseVisualization {
 	init() {
 		// Scene setup
 		this.scene = new THREE.Scene();
-		this.scene.background = new THREE.Color(0x667eea);
-		this.scene.fog = new THREE.Fog(0x667eea, 200, 500);
+		this.scene.background = new THREE.Color(0x1a1a2e);
+		this.scene.fog = new THREE.Fog(0x1a1a2e, 300, 800);
 
 		// Camera setup
 		const canvasElement = document.getElementById('canvas');
 		const width = canvasElement.clientWidth;
 		const height = canvasElement.clientHeight;
-		this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-		this.camera.position.set(30, 30, 30);
+		this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 2000);
+		this.camera.position.set(50, 40, 50);
 		this.camera.lookAt(0, 0, 0);
 
 		// Renderer setup
-		this.renderer = new THREE.WebGLRenderer({ antialias: true });
+		this.renderer = new THREE.WebGLRenderer({ antialias: true, precision: 'highp' });
 		this.renderer.setSize(width, height);
+		this.renderer.setPixelRatio(window.devicePixelRatio);
 		this.renderer.shadowMap.enabled = true;
+		this.renderer.shadowMap.type = THREE.PCFShadowShadowMap;
 		canvasElement.appendChild(this.renderer.domElement);
 
-		// Lighting
-		const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+		// Lighting - more sophisticated setup
+		const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 		this.scene.add(ambientLight);
 
-		const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-		directionalLight.position.set(50, 50, 50);
+		const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+		directionalLight.position.set(80, 100, 80);
 		directionalLight.castShadow = true;
-		directionalLight.shadow.camera.left = -100;
-		directionalLight.shadow.camera.right = 100;
-		directionalLight.shadow.camera.top = 100;
-		directionalLight.shadow.camera.bottom = -100;
-		directionalLight.shadow.mapSize.width = 2048;
-		directionalLight.shadow.mapSize.height = 2048;
+		directionalLight.shadow.mapSize.width = 4096;
+		directionalLight.shadow.mapSize.height = 4096;
+		directionalLight.shadow.camera.left = -150;
+		directionalLight.shadow.camera.right = 150;
+		directionalLight.shadow.camera.top = 150;
+		directionalLight.shadow.camera.bottom = -150;
+		directionalLight.shadow.camera.far = 500;
 		this.scene.add(directionalLight);
 
-		// Add ground
-		const groundGeometry = new THREE.PlaneGeometry(200, 200);
-		const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x888888 });
+		// Point lights for better 3D effect
+		const pointLight1 = new THREE.PointLight(0xffffff, 0.3);
+		pointLight1.position.set(50, 60, -50);
+		this.scene.add(pointLight1);
+
+		// Add ground plane
+		const groundGeometry = new THREE.PlaneGeometry(300, 300);
+		const groundMaterial = new THREE.MeshStandardMaterial({
+			color: 0x2a2a3e,
+			roughness: 0.7,
+			metalness: 0.1
+		});
 		const ground = new THREE.Mesh(groundGeometry, groundMaterial);
 		ground.rotation.x = -Math.PI / 2;
 		ground.receiveShadow = true;
+		ground.position.y = -0.5;
 		this.scene.add(ground);
+
+		// Add grid helper for reference
+		const gridHelper = new THREE.GridHelper(200, 20, 0x444444, 0x222222);
+		gridHelper.position.y = -0.4;
+		this.scene.add(gridHelper);
 
 		// Camera controls
 		this.setupControls();
@@ -189,7 +208,7 @@ class WarehouseVisualization {
 	renderWarehouse() {
 		// Clear existing bins
 		Object.values(this.bins).forEach(bin => {
-			this.scene.remove(bin.mesh);
+			this.scene.remove(bin.group);
 		});
 		this.bins = {};
 
@@ -201,65 +220,114 @@ class WarehouseVisualization {
 		const binWidth = config.bin_width;
 		const binHeight = config.bin_height;
 		const binDepth = config.bin_depth;
+		const gap = 0.1; // Gap between bins
 
 		// Center the warehouse in the scene
-		const offsetX = -(config.total_bins_x * binWidth) / 2;
-		const offsetZ = -(config.total_bins_z * binDepth) / 2;
+		const offsetX = -(config.total_bins_x * (binWidth + gap)) / 2;
+		const offsetZ = -(config.total_bins_z * (binDepth + gap)) / 2;
+		const offsetY = 0;
 
-		// Create bins
+		// Create bins with proper 3D representation
 		for (let x = 0; x < config.total_bins_x; x++) {
 			for (let y = 0; y < config.total_bins_y; y++) {
 				for (let z = 0; z < config.total_bins_z; z++) {
 					const key = `${x}_${y}_${z}`;
 					const occupancyData = occupancy[key];
-
 					const isOccupied = !!occupancyData && occupancyData.status === 'Occupied';
-					const fileCreation = occupancyData?.file_creation;
 
-					const geometry = new THREE.BoxGeometry(binWidth * 0.9, binHeight * 0.9, binDepth * 0.9);
+					// Create group for bin and label
+					const group = new THREE.Group();
 
+					// Main bin geometry
+					const geometry = new THREE.BoxGeometry(binWidth, binHeight, binDepth);
+
+					// Use better material with proper lighting
 					let material;
 					if (isOccupied) {
-						// Busy - gradient purple/magenta
-						material = new THREE.MeshPhongMaterial({
+						// Occupied - purple/magenta with proper metalness
+						material = new THREE.MeshStandardMaterial({
 							color: 0xd946ef,
-							emissive: 0xa855f7,
-							shininess: 100
+							emissive: 0x7b1fa2,
+							metalness: 0.3,
+							roughness: 0.4,
+							envMapIntensity: 1
 						});
 					} else {
-						// Free - gray
-						material = new THREE.MeshPhongMaterial({
-							color: 0x999999,
-							shininess: 30
+						// Empty - dark gray
+						material = new THREE.MeshStandardMaterial({
+							color: 0x555555,
+							emissive: 0x222222,
+							metalness: 0.2,
+							roughness: 0.5
 						});
 					}
 
 					const mesh = new THREE.Mesh(geometry, material);
-					mesh.position.set(
-						offsetX + x * binWidth + binWidth / 2,
-						y * binHeight + binHeight / 2,
-						offsetZ + z * binDepth + binDepth / 2
-					);
 					mesh.castShadow = true;
 					mesh.receiveShadow = true;
 
-					// Add outline for better visibility
+					// Position the bin
+					const posX = offsetX + x * (binWidth + gap) + binWidth / 2;
+					const posY = offsetY + y * (binHeight + gap) + binHeight / 2;
+					const posZ = offsetZ + z * (binDepth + gap) + binDepth / 2;
+
+					mesh.position.set(posX, posY, posZ);
+					group.add(mesh);
+
+					// Add edge wireframe for 3D definition
 					const edges = new THREE.EdgesGeometry(geometry);
 					const wireframe = new THREE.LineSegments(
 						edges,
-						new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 0.5 })
+						new THREE.LineBasicMaterial({
+							color: isOccupied ? 0xffd700 : 0x666666,
+							linewidth: 1,
+							fog: false
+						})
 					);
-					mesh.add(wireframe);
+					wireframe.position.copy(mesh.position);
+					group.add(wireframe);
 
-					this.scene.add(mesh);
+					// Add label with file number if occupied
+					if (isOccupied && occupancyData?.file_creation) {
+						const canvas = document.createElement('canvas');
+						canvas.width = 256;
+						canvas.height = 128;
+						const ctx = canvas.getContext('2d');
+
+						ctx.fillStyle = '#1a1a2e';
+						ctx.fillRect(0, 0, 256, 128);
+
+						ctx.fillStyle = '#d946ef';
+						ctx.font = 'bold 36px Arial';
+						ctx.textAlign = 'center';
+						ctx.textBaseline = 'middle';
+						ctx.fillText(occupancyData.file_creation.substring(0, 10), 128, 64);
+
+						const texture = new THREE.CanvasTexture(canvas);
+						const labelGeometry = new THREE.PlaneGeometry(binWidth * 0.95, binHeight * 0.3);
+						const labelMaterial = new THREE.MeshBasicMaterial({
+							map: texture,
+							emissive: 0x333333,
+							side: THREE.DoubleSide
+						});
+
+						const label = new THREE.Mesh(labelGeometry, labelMaterial);
+						label.position.set(0, 0, binDepth / 2 + 0.05);
+						mesh.add(label);
+					}
+
+					// Position group in scene
+					group.position.set(posX, posY, posZ);
+					this.scene.add(group);
 
 					this.bins[key] = {
+						group: group,
 						mesh: mesh,
 						x: x,
 						y: y,
 						z: z,
 						occupied: isOccupied,
-						fileCreation: fileCreation,
+						fileCreation: occupancyData?.file_creation,
 						data: occupancyData
 					};
 				}
@@ -301,7 +369,7 @@ class WarehouseVisualization {
 
 			// Find which bin was clicked
 			for (const [key, binData] of Object.entries(this.bins)) {
-				if (binData.mesh === clickedMesh) {
+				if (binData.mesh === clickedMesh || binData.mesh.parent === clickedMesh) {
 					this.selectBin(key, binData);
 					break;
 				}

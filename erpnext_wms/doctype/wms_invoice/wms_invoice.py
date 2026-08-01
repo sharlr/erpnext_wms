@@ -45,3 +45,42 @@ class WmsInvoice(Document):
     def validate(self):
         """Validate before save"""
         self.calculate_totals()
+
+    def on_submit(self):
+        """Post to General Ledger on submit"""
+        self.post_to_general_ledger()
+
+    def post_to_general_ledger(self):
+        """Create Journal Entry for GL posting"""
+        je = frappe.get_doc({
+            "doctype": "Journal Entry",
+            "posting_date": self.invoice_date,
+            "company": self.company,
+            "remarks": f"WMS Invoice {self.name} - {self.remarks or ''}",
+            "reference_number": self.name,
+            "accounts": []
+        })
+
+        # Post income from service items
+        for item in self.invoice_items:
+            if item.amount > 0:
+                je.append("accounts", {
+                    "account": item.income_account,
+                    "credit": item.amount,
+                    "cost_center": frappe.get_value("Company", self.company, "cost_center") or ""
+                })
+
+        # Post receivable
+        if self.total_amount > 0:
+            je.append("accounts", {
+                "account": self.receivable_account,
+                "debit": self.total_amount,
+                "party_type": "Customer",
+                "party": self.customer,
+                "cost_center": frappe.get_value("Company", self.company, "cost_center") or ""
+            })
+
+        je.insert(ignore_permissions=True)
+        je.submit()
+        self.journal_entry = je.name
+        self.save()
