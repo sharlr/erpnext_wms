@@ -1,6 +1,6 @@
 {
   "charts": [],
-  "content": "[{\"id\": \"hf8g5kwsky\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>File Creation</b></span>\", \"col\": 12}}, {\"id\": \"j8xcm2i0wd\", \"type\": \"paragraph\", \"data\": {\"text\": \"<p>Create Import and Export files. Documents are auto-numbered as IM-YYYY-## and EX-YYYY-##.</p>\", \"col\": 12}}, {\"id\": \"wlm959das5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Import File\", \"col\": 3}}, {\"id\": \"ifej5kismm\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Export File\", \"col\": 3}}]",
+  "content": "[{\"id\": \"fc1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Create New File</b></span>\", \"col\": 12}}, {\"id\": \"fc2\", \"type\": \"paragraph\", \"data\": {\"text\": \"<p>Select file type (Import/Export) and customer to auto-generate the appropriate file.</p>\", \"col\": 12}}, {\"id\": \"fc3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"File Creation\", \"col\": 3}}, {\"id\": \"fc4\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"fc5\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>View Files</b></span>\", \"col\": 12}}, {\"id\": \"fc6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Import File\", \"col\": 3}}, {\"id\": \"fc7\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Export File\", \"col\": 3}}]",
   "creation": "2026-08-01 00:00:00.000000",
   "custom_blocks": [],
   "docstatus": 0,
@@ -25,6 +25,12 @@
   "roles": [],
   "sequence_id": 0.1,
   "shortcuts": [
+    {
+      "doc_view": "List",
+      "label": "File Creation",
+      "link_to": "File Creation",
+      "type": "DocType"
+    },
     {
       "doc_view": "List",
       "label": "Import File",
