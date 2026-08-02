@@ -2,7 +2,7 @@
 
 Warehouse Management System app for ERPNext v16+.
 
-**Last pushed:** 2026-08-03 01:00 +03:00
+**Last pushed:** 2026-08-03 01:10 +03:00
 
 ## Modules
 

@@ -2,3 +2,4 @@
 
 [post_model_sync]
 erpnext_wms.patches.v1_0.cleanup_stale_workspaces
+erpnext_wms.patches.v1_0.add_child_table_columns
