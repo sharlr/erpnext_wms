@@ -13,6 +13,9 @@ class ExportFile(Document):
 		if not self.customer:
 			frappe.throw(_("Customer is required"))
 
+		if not self.awb_bl_number:
+			frappe.throw(_("AWB/BL Number is required"))
+
 		if not self.export_items:
 			frappe.throw(_("Add at least one item"))
 

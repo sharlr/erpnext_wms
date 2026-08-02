@@ -11,7 +11,9 @@
   "file_creation",
   "company",
   "customer",
+  "shipping_line",
   "destination_country",
+  "awb_bl_number",
   "export_items",
   "financial_details",
   "total_quantity",
@@ -52,12 +54,28 @@
    "reqd": 1
   },
   {
+   "fetch_from": "file_creation.shipping_line",
+   "fieldname": "shipping_line",
+   "fieldtype": "Link",
+   "label": "Shipping Line",
+   "options": "Shipping Line",
+   "read_only": 1
+  },
+  {
    "fetch_from": "file_creation.destination_country",
    "fieldname": "destination_country",
    "fieldtype": "Link",
    "label": "Destination Country",
    "options": "Country",
    "read_only": 1
+  },
+  {
+   "fetch_from": "file_creation.awb_bl_number",
+   "fetch_if_empty": 1,
+   "fieldname": "awb_bl_number",
+   "fieldtype": "Data",
+   "label": "AWB/BL Number",
+   "reqd": 1
   },
   {
    "fieldname": "export_items",
