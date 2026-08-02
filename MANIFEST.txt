@@ -2,54 +2,66 @@ ERPNext WMS - Warehouse Management System v1.0.0
 =====================================================
 
 STRUCTURE:
-├── pyproject.toml          - Build configuration
-├── setup.py                - Legacy setup config
+├── pyproject.toml          - Build configuration (flit)
 ├── README.md               - Documentation
 ├── LICENSE                 - MIT License
 ├── MANIFEST.txt            - This file
 └── erpnext_wms/            - Main app package
     ├── __init__.py
     ├── hooks.py
+    ├── install.py          - before_install: creates the WMS roles
+    ├── tasks.py            - scheduler entry points
     ├── version.py
     ├── modules.txt
     ├── patches.txt
-    └── doctype/
-        ├── import_file/
-        ├── export_file/
-        ├── stock_adjustment/
-        ├── wms_invoice/
-        ├── payment_voucher/
-        ├── import_item/
-        ├── export_item/
-        ├── adjustment_item/
-        ├── invoice_item/
-        ├── warehouse_location/
-        └── shipping_line/
+    ├── public/
+    │   ├── warehouse-visualization.html
+    │   └── js/warehouse-visualization.js
+    ├── file_creation/      - module
+    │   ├── doctype/{file_creation,import_file,import_item,
+    │   │             export_file,export_item,shipping_line}/
+    │   └── workspace/file_creation/
+    ├── wms_warehouse/      - module
+    │   ├── doctype/{warehouse_layout,warehouse_location}/
+    │   └── workspace/{warehouse_management,warehouse_visualization}/
+    ├── wms_finance/        - module
+    │   └── doctype/{wms_invoice,invoice_item,
+    │                 invoice_payment_item,payment_voucher}/
+    └── wms_inventory/      - module
+        └── doctype/{stock_adjustment,adjustment_item}/
 
 DOCTYPES INCLUDED:
-Primary:
-- Import File (IM-YYYY-MM-XXXXX)
-- Export File (EX-YYYY-MM-XXXXX)
-- Stock Adjustment (SA-YYYY-MM-XXXXX)
-- WMS Invoice (WMSINV-YYYY-MM-XXXXX)
-- Payment Voucher (PV-YYYY-XXXXX)
+Submittable:
+- File Creation      (FC-.YYYY.-.##)
+- Import File        (IM-.YYYY.-.MM.-.#####)
+- Export File        (EX-.YYYY.-.MM.-.#####)
+- Stock Adjustment   (SA-.YYYY.-.MM.-.#####)
+- WMS Invoice        (WMSINV-.YYYY.-.MM.-.#####)
+- Payment Voucher    (PV-.YYYY.-.#####)
 
 Child Tables:
 - Import Item
 - Export Item
 - Adjustment Item
 - Invoice Item
+- Invoice Payment Item
 
 Master Data:
-- Warehouse Location
-- Shipping Line
+- Warehouse Layout   (named after the linked Warehouse, one per warehouse)
+- Warehouse Location (named after location_name)
+- Shipping Line      (named after shipping_line_name)
 
-USER ROLES:
+USER ROLES (created by before_install):
 - WMS User
 - WMS Finance
 - WMS Manager
 
-WORKFLOWS:
-- Import workflow (8 stages)
-- Export workflow (8 stages)
-- Stock Adjustment workflow (4 stages)
+ERPNEXT INTEGRATION:
+- Stock Adjustment submit -> Stock Reconciliation (cancelled on cancel)
+- WMS Invoice submit      -> Journal Entry        (cancelled on cancel)
+- Links into: Item, Warehouse, Customer, Supplier, Company, Account, Country
+
+NOT IMPLEMENTED:
+- Workflows / approval routing
+- Storage-charge rating (tasks.generate_storage_charges is a no-op)
+- Serial and batch numbers in Stock Adjustment

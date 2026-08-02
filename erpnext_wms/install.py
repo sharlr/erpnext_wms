@@ -1,23 +1,28 @@
 import frappe
 
-def after_install():
-    """Create roles after app installation"""
-    frappe.db.set_value("Module", "File Creation", "module_name", "erpnext_wms")
-    frappe.db.set_value("Module", "WMS Warehouse", "module_name", "erpnext_wms")
-    
-    roles = [
-        {"name": "WMS User", "description": "Warehouse Management System User"},
-        {"name": "WMS Finance", "description": "WMS Finance Manager"},
-        {"name": "WMS Manager", "description": "WMS System Administrator"}
-    ]
-    
-    for role in roles:
-        if not frappe.db.exists("Role", role["name"]):
-            frappe.get_doc({
-                "doctype": "Role",
-                "name": role["name"],
-                "role_name": role["name"],
-                "desk_access": 1
-            }).insert(ignore_permissions=True)
-    
-    frappe.msgprint("ERPNext WMS installed successfully!")
+ROLES = [
+	{"name": "WMS User", "desk_access": 1},
+	{"name": "WMS Finance", "desk_access": 1},
+	{"name": "WMS Manager", "desk_access": 1},
+]
+
+
+def before_install():
+	"""Create the roles the doctype permissions link to.
+
+	This has to run before the doctypes are synced -- a permission row pointing
+	at a Role that does not exist yet fails link validation.
+	"""
+	for role in ROLES:
+		if frappe.db.exists("Role", role["name"]):
+			continue
+
+		frappe.get_doc(
+			{
+				"doctype": "Role",
+				"role_name": role["name"],
+				"desk_access": role["desk_access"],
+			}
+		).insert(ignore_permissions=True)
+
+	frappe.db.commit()

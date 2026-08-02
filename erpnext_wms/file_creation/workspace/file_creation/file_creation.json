@@ -1,0 +1,49 @@
+{
+ "charts": [],
+ "content": "[{\"id\": \"fc1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Create New File</b></span>\", \"col\": 12}}, {\"id\": \"fc2\", \"type\": \"paragraph\", \"data\": {\"text\": \"<p>Select file type (Import/Export) and customer to auto-generate the appropriate file.</p>\", \"col\": 12}}, {\"id\": \"fc3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"File Creation\", \"col\": 3}}, {\"id\": \"fc4\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"fc5\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>View Files</b></span>\", \"col\": 12}}, {\"id\": \"fc6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Import File\", \"col\": 3}}, {\"id\": \"fc7\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Export File\", \"col\": 3}}]",
+ "creation": "2026-08-01 00:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "file",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "File Creation",
+ "links": [],
+ "modified": "2026-08-02 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "File Creation",
+ "name": "File Creation",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "restrict_to_domain": "",
+ "roles": [],
+ "sequence_id": 0.1,
+ "shortcuts": [
+  {
+   "doc_view": "List",
+   "label": "File Creation",
+   "link_to": "File Creation",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Import File",
+   "link_to": "Import File",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Export File",
+   "link_to": "Export File",
+   "type": "DocType"
+  }
+ ],
+ "title": "File Creation",
+ "type": "Workspace"
+}

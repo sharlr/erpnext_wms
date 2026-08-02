@@ -1,0 +1,148 @@
+{
+ "autoname": "IM-.YYYY.-.MM.-.#####",
+ "creation": "2026-07-31T19:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "document_type": "Document",
+ "editable_grid": 0,
+ "engine": "InnoDB",
+ "field_order": [
+  "import_details",
+  "file_creation",
+  "company",
+  "customer",
+  "shipping_line",
+  "awb_bl_number",
+  "import_items",
+  "financial_details",
+  "total_quantity",
+  "total_weight",
+  "total_value",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "import_details",
+   "fieldtype": "Section Break",
+   "label": "Import Details"
+  },
+  {
+   "fieldname": "file_creation",
+   "fieldtype": "Link",
+   "label": "File Number",
+   "options": "File Creation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "shipping_line",
+   "fieldtype": "Link",
+   "label": "Shipping Line",
+   "options": "Shipping Line"
+  },
+  {
+   "fieldname": "awb_bl_number",
+   "fieldtype": "Data",
+   "label": "AWB/BL Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "import_items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Import Item"
+  },
+  {
+   "fieldname": "financial_details",
+   "fieldtype": "Section Break",
+   "label": "Financial Details"
+  },
+  {
+   "fieldname": "total_quantity",
+   "fieldtype": "Float",
+   "label": "Total Quantity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "label": "Total Weight (kg)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_value",
+   "fieldtype": "Currency",
+   "label": "Total Value",
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "no_copy": 1,
+   "options": "Draft\nSubmitted\nIn Progress\nCompleted"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Import File",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "idx": 0,
+ "is_submittable": 1,
+ "istable": 0,
+ "modified": "2026-08-02 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "File Creation",
+ "name": "Import File",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS User",
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

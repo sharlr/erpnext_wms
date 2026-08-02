@@ -1,0 +1,41 @@
+{
+ "creation": "2026-08-01T00:00:00.000000",
+ "docstatus": 0,
+ "doctype": "DocType",
+ "document_type": "Child Table",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "payment_voucher",
+  "payment_date",
+  "payment_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "payment_voucher",
+   "fieldtype": "Link",
+   "label": "Payment Voucher",
+   "options": "Payment Voucher",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payment_date",
+   "fieldtype": "Date",
+   "label": "Payment Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_amount",
+   "fieldtype": "Currency",
+   "label": "Payment Amount",
+   "read_only": 1
+  }
+ ],
+ "idx": 0,
+ "istable": 1,
+ "modified": "2026-08-02 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "WMS Finance",
+ "name": "Invoice Payment Item",
+ "owner": "Administrator"
+}

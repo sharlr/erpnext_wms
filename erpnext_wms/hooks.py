@@ -6,67 +6,25 @@ app_email = "support@erpnext-wms.com"
 app_license = "MIT"
 app_version = "1.0.0"
 
-app_include_css = []
-app_include_js = []
+# Warehouse, Item, Customer, Company and Journal Entry all come from ERPNext,
+# so the bench must refuse to install this app without it.
+required_apps = ["erpnext"]
 
-permission = [
-    {
-        "doctype": "Import File",
-        "name": "WMS User",
-        "read": 1,
-        "write": 1,
-        "create": 1,
-        "delete": 0,
-        "submit": 1,
-        "amend": 1
-    },
-    {
-        "doctype": "Export File",
-        "name": "WMS User",
-        "read": 1,
-        "write": 1,
-        "create": 1,
-        "delete": 0,
-        "submit": 1,
-        "amend": 1
-    },
-    {
-        "doctype": "Stock Adjustment",
-        "name": "WMS User",
-        "read": 1,
-        "write": 1,
-        "create": 1,
-        "delete": 0,
-        "submit": 1,
-        "amend": 1
-    },
-    {
-        "doctype": "WMS Invoice",
-        "name": "WMS Finance",
-        "read": 1,
-        "write": 1,
-        "create": 1,
-        "delete": 0,
-        "submit": 1
-    }
-]
+# NOTE: warehouse-visualization.js is deliberately NOT in app_include_js. It
+# needs the three.js global and the standalone page's canvas, so the page at
+# /assets/erpnext_wms/warehouse-visualization.html loads it directly.
 
-fixtures = []
+# The doctype JSONs grant permissions to WMS User / WMS Finance / WMS Manager.
+# Those Role records have to exist before the doctypes are synced, otherwise the
+# permission rows fail link validation during install.
+before_install = "erpnext_wms.install.before_install"
 
 scheduler_events = {
     "daily": [
-        "erpnext_wms.tasks.generate_storage_charges"
+        "erpnext_wms.tasks.generate_storage_charges",
     ]
 }
 
-doc_events = {
-    "Import File": {
-        "on_submit": "erpnext_wms.doctype.import_file.import_file.on_submit_import_file"
-    },
-    "Export File": {
-        "on_submit": "erpnext_wms.doctype.export_file.export_file.on_submit_export_file"
-    },
-    "Stock Adjustment": {
-        "on_submit": "erpnext_wms.doctype.stock_adjustment.stock_adjustment.on_submit_stock_adjustment"
-    }
-}
+# Submit/cancel behaviour lives on the Document subclasses themselves; hooking
+# the same events again here would run the logic twice.
+doc_events = {}
