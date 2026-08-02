@@ -1,3 +1,7 @@
+// Whitelisted methods live in the wms_warehouse module. This path must track
+// the doctype's module folder -- it broke once when the app was restructured.
+const API = 'erpnext_wms.wms_warehouse.doctype.warehouse_layout.warehouse_layout';
+
 class WarehouseVisualization {
 	constructor() {
 		this.scene = null;
@@ -147,16 +151,36 @@ class WarehouseVisualization {
 		});
 	}
 
+	// This page is a plain asset, not a desk page -- it loads three.js and this
+	// file and nothing else, so `frappe` is not defined here. Calls go over the
+	// REST API instead; the session cookie rides along as it is same-origin.
+	async callMethod(method, args = {}) {
+		const url = new URL(`/api/method/${method}`, window.location.origin);
+		Object.entries(args).forEach(([key, value]) => url.searchParams.set(key, value));
+
+		const response = await fetch(url, {
+			credentials: 'same-origin',
+			headers: { Accept: 'application/json' },
+		});
+
+		if (!response.ok) {
+			throw new Error(`${method} failed: ${response.status} ${response.statusText}`);
+		}
+
+		const payload = await response.json();
+		return payload.message;
+	}
+
 	async loadWarehouses() {
 		try {
-			const response = await frappe.call({
-				method: 'erpnext_wms.doctype.warehouse_layout.warehouse_layout.get_warehouses',
-				callback: (r) => {
-					if (r.message) {
-						this.populateWarehouseSelect(r.message);
-					}
-				}
-			});
+			const warehouses = await this.callMethod(`${API}.get_warehouses`);
+
+			if (!warehouses || !warehouses.length) {
+				this.showError('No Warehouse Layout records found. Create one first.');
+				return;
+			}
+
+			this.populateWarehouseSelect(warehouses);
 		} catch (error) {
 			console.error('Error loading warehouses:', error);
 			this.showError('Failed to load warehouses');
@@ -186,19 +210,20 @@ class WarehouseVisualization {
 
 	async loadWarehouse(warehouseName) {
 		try {
-			const response = await frappe.call({
-				method: 'erpnext_wms.doctype.warehouse_layout.warehouse_layout.get_warehouse_occupancy',
-				args: { warehouse_name: warehouseName },
-				callback: (r) => {
-					if (r.message) {
-						this.warehouseData = r.message;
-						this.renderWarehouse();
-						this.updateStatistics();
-						document.getElementById('statsSection').style.display = 'block';
-						document.getElementById('legendSection').style.display = 'block';
-					}
-				}
+			const data = await this.callMethod(`${API}.get_warehouse_occupancy`, {
+				warehouse_name: warehouseName,
 			});
+
+			if (!data) {
+				this.showError(`No layout data for ${warehouseName}`);
+				return;
+			}
+
+			this.warehouseData = data;
+			this.renderWarehouse();
+			this.updateStatistics();
+			document.getElementById('statsSection').style.display = 'block';
+			document.getElementById('legendSection').style.display = 'block';
 		} catch (error) {
 			console.error('Error loading warehouse:', error);
 			this.showError(`Failed to load warehouse: ${warehouseName}`);

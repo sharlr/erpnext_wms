@@ -9,26 +9,10 @@ from frappe.utils import flt, get_link_to_form
 # back to the plain Document class.
 class WMSInvoice(Document):
 	def validate(self):
-		self.set_file_details()
+		# customer / company / file_type arrive via fetch_from, applied by
+		# _validate_links() before this runs
 		self.load_payment_vouchers()
 		self.calculate_totals()
-
-	def set_file_details(self):
-		"""Pull customer and file type down from the linked File Creation."""
-		if not self.file_creation:
-			return
-
-		file_doc = frappe.db.get_value(
-			"File Creation",
-			self.file_creation,
-			["customer", "file_type"],
-			as_dict=True,
-		)
-		if not file_doc:
-			return
-
-		self.customer = file_doc.customer
-		self.file_type = file_doc.file_type
 
 	def load_payment_vouchers(self):
 		"""Rebuild the payment voucher table from the linked file.

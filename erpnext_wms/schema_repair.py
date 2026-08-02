@@ -3,6 +3,38 @@ import frappe
 WMS_MODULES = ["File Creation", "WMS Warehouse", "WMS Finance", "WMS Inventory"]
 
 
+def repair():
+	"""after_migrate entry point: everything that has to be reasserted."""
+	ensure_standard_doctypes()
+	ensure_child_table_columns()
+
+
+def ensure_standard_doctypes():
+	"""Force custom=0 on this app's doctypes.
+
+	import_controller() returns the plain Document class -- silently, with no
+	traceback -- for any doctype flagged custom (base_document.py:105). That is
+	the only path in frappe where a controller is skipped without raising, and
+	it disables autoname(), validate(), on_submit() and every other method at
+	once. A doctype that was ever created through the UI keeps the flag.
+	"""
+	flagged = frappe.get_all(
+		"DocType",
+		filters={"custom": 1, "module": ("in", WMS_MODULES)},
+		pluck="name",
+	)
+
+	for doctype in flagged:
+		frappe.db.set_value("DocType", doctype, "custom", 0, update_modified=False)
+		print(f"erpnext_wms: cleared custom flag on {doctype} (controller was being bypassed)")
+
+	if flagged:
+		frappe.clear_cache()
+		frappe.db.commit()
+
+	return flagged
+
+
 def ensure_child_table_columns():
 	"""Add parent/parenttype/parentfield to child tables that lack them.
 

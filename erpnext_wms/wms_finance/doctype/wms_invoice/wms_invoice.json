@@ -37,26 +37,32 @@
    "fieldname": "file_creation",
    "fieldtype": "Link",
    "label": "File Number",
-   "options": "File Creation"
+   "options": "File Creation",
+   "reqd": 1
   },
   {
+   "fetch_from": "file_creation.customer",
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
    "options": "Customer",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "file_creation.file_type",
    "fieldname": "file_type",
    "fieldtype": "Data",
    "label": "File Type",
    "read_only": 1
   },
   {
+   "fetch_from": "file_creation.company",
    "fieldname": "company",
    "fieldtype": "Link",
    "label": "Company",
    "options": "Company",
+   "read_only": 1,
    "reqd": 1
   },
   {

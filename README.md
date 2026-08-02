@@ -2,7 +2,7 @@
 
 Warehouse Management System app for ERPNext v16+.
 
-**Last pushed:** 2026-08-03 01:13 +03:00
+**Last pushed:** 2026-08-03 01:51 +03:00
 
 ## Modules
 
@@ -41,6 +41,22 @@ bench build --app erpnext_wms
 registers the app in `sites/apps.txt` and installs the Python package.
 
 Installation creates three roles: **WMS User**, **WMS Finance**, **WMS Manager**.
+
+`bench build --app erpnext_wms` is not optional — it symlinks `public/` into
+`sites/assets`, and without it the 3D visualisation page 404s.
+
+## Troubleshooting
+
+```bash
+bench --site <your-site> execute erpnext_wms.diagnostics.check
+```
+
+Reports, per doctype: the resolved controller class, whether `custom` is set
+(which silently bypasses controllers), and whether child tables have their
+`parent` columns — plus the state of every link in the 3D visualisation chain.
+
+Note that `bench migrate` updates the database but does **not** reload Python
+into running processes; code changes need `bench restart`.
 
 ## Requirements
 
