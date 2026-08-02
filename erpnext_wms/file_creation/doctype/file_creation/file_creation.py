@@ -1,28 +1,28 @@
 import frappe
 from frappe import _
 from frappe.model.document import Document
-from frappe.model.naming import make_autoname
 
-# Import files and export files get their own series so the file number itself
-# says which kind of file it is.
+# Naming is driven by the `naming_series` field and autoname "naming_series:",
+# not by an autoname() method here. frappe evaluates that from the DocType
+# record, so it keeps working even when this controller is not loaded.
 NAMING_SERIES = {
-	"Import": "IM-.YYYY.-.####",
-	"Export": "EX-.YYYY.-.####",
+	"Import": "IM-.YYYY.-",
+	"Export": "EX-.YYYY.-",
 }
 
 
 class FileCreation(Document):
-	def autoname(self):
-		"""Name from the file type.
+	def before_naming(self):
+		"""Server-side mirror of the form script.
 
-		naming.set_new_name() calls this before falling back to meta.autoname,
-		so the doctype carries no autoname of its own.
+		Covers documents created over the API or by other code, where no
+		client script runs to set the series.
 		"""
 		series = NAMING_SERIES.get(self.file_type)
 		if not series:
 			frappe.throw(_("Select a File Type before saving"))
 
-		self.name = make_autoname(series, doc=self)
+		self.naming_series = series
 
 	def on_submit(self):
 		self.db_set("status", "Submitted")

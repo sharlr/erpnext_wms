@@ -2,7 +2,7 @@
 
 Warehouse Management System app for ERPNext v16+.
 
-**Last pushed:** 2026-08-03 00:40 +03:00
+**Last pushed:** 2026-08-03 01:00 +03:00
 
 ## Modules
 
@@ -16,9 +16,10 @@ Warehouse Management System app for ERPNext v16+.
 ## Features
 
 - **Import / Export file management** — track goods from port to warehouse and back
-  out. File numbers are series-per-type: `IM-YYYY-####` for imports, `EX-YYYY-####`
-  for exports. Import/Export Files fetch customer, company, shipping line and
-  AWB/BL from the File Creation they belong to.
+  out. File numbers are series-per-type: `IM-YYYY-#####` for imports,
+  `EX-YYYY-#####` for exports, driven by the `naming_series` field so naming does
+  not depend on the controller being loaded. Import/Export Files fetch customer,
+  company, shipping line and AWB/BL from the File Creation they belong to.
 - **Stock Adjustments** — physical counts posted to the stock ledger as an ERPNext
   Stock Reconciliation, reversed automatically on cancel
 - **WMS Invoicing** — aggregates submitted Payment Vouchers for a file, posts a
