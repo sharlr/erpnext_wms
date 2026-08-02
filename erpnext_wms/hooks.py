@@ -19,6 +19,10 @@ required_apps = ["erpnext"]
 # permission rows fail link validation during install.
 before_install = "erpnext_wms.install.before_install"
 
+# Repairs child tables whose columns predate istable=1. Runs on every migrate
+# because a one-shot patch cannot be re-triggered once it is in Patch Log.
+after_migrate = "erpnext_wms.schema_repair.ensure_child_table_columns"
+
 # The Warehouse Visualization workspace embeds this block; without the fixture
 # the custom_block in its content has nothing to render.
 fixtures = [
