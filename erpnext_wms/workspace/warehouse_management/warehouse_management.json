@@ -1,6 +1,6 @@
 {
   "charts": [],
-  "content": "[{\"id\": \"l72zu4jhzx\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Warehouse Management</b></span>\", \"col\": 12}}, {\"id\": \"sdtudkkq22\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"WMS Invoice\", \"col\": 3}}, {\"id\": \"5j6xqcbzk5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Stock Adjustment\", \"col\": 3}}, {\"id\": \"fukalhyu8s\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"7zfzvblxnj\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Masters</b></span>\", \"col\": 12}}, {\"id\": \"9yayoyk2tp\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Shipping Line\", \"col\": 3}}, {\"id\": \"qlam1co5bp\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Warehouse Location\", \"col\": 3}}, {\"id\": \"20jxz7yetz\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Payment Voucher\", \"col\": 3}}, {\"id\": \"jf528d24an\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"nt2bm0hyaa\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Line Items</b></span>\", \"col\": 12}}, {\"id\": \"01z1wex2rh\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Invoice Item\", \"col\": 3}}, {\"id\": \"67zs5piegn\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Adjustment Item\", \"col\": 3}}]",
+  "content": "[{\"id\": \"h1\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>📄 File Management</b></span>\", \"col\": 12}}, {\"id\": \"s1\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"File Creation\", \"col\": 3}}, {\"id\": \"s2\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Import File\", \"col\": 3}}, {\"id\": \"s3\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Export File\", \"col\": 3}}, {\"id\": \"sp1\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"h2\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>💳 Financial</b></span>\", \"col\": 12}}, {\"id\": \"s4\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"WMS Invoice\", \"col\": 3}}, {\"id\": \"s5\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Payment Voucher\", \"col\": 3}}, {\"id\": \"sp2\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"h3\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>🏭 Warehouse Operations</b></span>\", \"col\": 12}}, {\"id\": \"s6\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Stock Adjustment\", \"col\": 3}}, {\"id\": \"s7\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Warehouse Location\", \"col\": 3}}, {\"id\": \"s8\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Warehouse Layout\", \"col\": 3}}, {\"id\": \"sp3\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"h4\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>🎯 Visualization</b></span>\", \"col\": 12}}, {\"id\": \"s9\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Warehouse Visualization\", \"col\": 3}}, {\"id\": \"sp4\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"h5\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>📋 Masters</b></span>\", \"col\": 12}}, {\"id\": \"s10\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Shipping Line\", \"col\": 3}}, {\"id\": \"sp5\", \"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"id\": \"h6\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>📑 Child Tables</b></span>\", \"col\": 12}}, {\"id\": \"s11\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Invoice Item\", \"col\": 3}}, {\"id\": \"s12\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Adjustment Item\", \"col\": 3}}, {\"id\": \"s13\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Invoice Payment Item\", \"col\": 3}}, {\"id\": \"s14\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Import Item\", \"col\": 3}}, {\"id\": \"s15\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Export Item\", \"col\": 3}}]",
   "creation": "2026-08-01 00:00:00.000000",
   "custom_blocks": [],
   "docstatus": 0,
@@ -27,8 +27,32 @@
   "shortcuts": [
     {
       "doc_view": "List",
+      "label": "File Creation",
+      "link_to": "File Creation",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
+      "label": "Import File",
+      "link_to": "Import File",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
+      "label": "Export File",
+      "link_to": "Export File",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
       "label": "WMS Invoice",
       "link_to": "WMS Invoice",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
+      "label": "Payment Voucher",
+      "link_to": "Payment Voucher",
       "type": "DocType"
     },
     {
@@ -39,20 +63,26 @@
     },
     {
       "doc_view": "List",
-      "label": "Shipping Line",
-      "link_to": "Shipping Line",
-      "type": "DocType"
-    },
-    {
-      "doc_view": "List",
       "label": "Warehouse Location",
       "link_to": "Warehouse Location",
       "type": "DocType"
     },
     {
       "doc_view": "List",
-      "label": "Payment Voucher",
-      "link_to": "Payment Voucher",
+      "label": "Warehouse Layout",
+      "link_to": "Warehouse Layout",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
+      "label": "Warehouse Visualization",
+      "link_to": "Warehouse Visualization",
+      "type": "Workspace"
+    },
+    {
+      "doc_view": "List",
+      "label": "Shipping Line",
+      "link_to": "Shipping Line",
       "type": "DocType"
     },
     {
@@ -65,6 +95,24 @@
       "doc_view": "List",
       "label": "Adjustment Item",
       "link_to": "Adjustment Item",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
+      "label": "Invoice Payment Item",
+      "link_to": "Invoice Payment Item",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
+      "label": "Import Item",
+      "link_to": "Import Item",
+      "type": "DocType"
+    },
+    {
+      "doc_view": "List",
+      "label": "Export Item",
+      "link_to": "Export Item",
       "type": "DocType"
     }
   ],

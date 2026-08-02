@@ -59,7 +59,7 @@
       "fieldname": "awb_bl_number",
       "fieldtype": "Data",
       "label": "AWB/BL Number",
-      "reqd": 1
+      "reqd": 0
     },
     {
       "fieldname": "status",
