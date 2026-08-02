@@ -34,24 +34,30 @@
    "reqd": 1
   },
   {
+   "fetch_from": "file_creation.company",
    "fieldname": "company",
    "fieldtype": "Link",
    "label": "Company",
    "options": "Company",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "file_creation.customer",
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
    "options": "Customer",
+   "read_only": 1,
    "reqd": 1
   },
   {
+   "fetch_from": "file_creation.destination_country",
    "fieldname": "destination_country",
    "fieldtype": "Link",
    "label": "Destination Country",
-   "options": "Country"
+   "options": "Country",
+   "read_only": 1
   },
   {
    "fieldname": "export_items",
