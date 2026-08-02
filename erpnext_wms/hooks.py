@@ -19,6 +19,12 @@ required_apps = ["erpnext"]
 # permission rows fail link validation during install.
 before_install = "erpnext_wms.install.before_install"
 
+# The Warehouse Visualization workspace embeds this block; without the fixture
+# the custom_block in its content has nothing to render.
+fixtures = [
+    {"dt": "Custom HTML Block", "filters": [["name", "in", ["WMS 3D Warehouse"]]]},
+]
+
 scheduler_events = {
     "daily": [
         "erpnext_wms.tasks.generate_storage_charges",
