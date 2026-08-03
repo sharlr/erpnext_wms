@@ -27,6 +27,11 @@ after_migrate = "erpnext_wms.schema_repair.repair"
 # the custom_block in its content has nothing to render.
 fixtures = [
     {"dt": "Custom HTML Block", "filters": [["name", "in", ["WMS 3D Warehouse"]]]},
+    # numeric filename prefixes in fixtures/ force the import order: states and
+    # actions must exist before the Workflow rows that link them
+    {"dt": "Workflow State"},
+    {"dt": "Workflow Action Master"},
+    {"dt": "Workflow", "filters": [["name", "like", "WMS %"]]},
 ]
 
 scheduler_events = {

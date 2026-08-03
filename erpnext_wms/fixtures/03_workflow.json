@@ -1,0 +1,394 @@
+[
+ {
+  "doctype": "Workflow",
+  "name": "WMS Import File",
+  "workflow_name": "WMS Import File",
+  "document_type": "Import File",
+  "workflow_state_field": "status",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "override_status": 0,
+  "states": [
+   {
+    "doctype": "Workflow Document State",
+    "state": "Draft",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Documentation Review",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Customs Cleared",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Ops Assigned",
+    "doc_status": "0",
+    "allow_edit": "WMS Manager"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Unloading",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Goods Placed",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Invoiced",
+    "doc_status": "1",
+    "allow_edit": "WMS Finance"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Completed",
+    "doc_status": "1",
+    "allow_edit": "WMS Manager"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Cancelled",
+    "doc_status": "2",
+    "allow_edit": "WMS Manager"
+   }
+  ],
+  "transitions": [
+   {
+    "doctype": "Workflow Transition",
+    "state": "Draft",
+    "action": "Submit for Documentation",
+    "next_state": "Documentation Review",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Documentation Review",
+    "action": "Reject",
+    "next_state": "Draft",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Documentation Review",
+    "action": "Clear Customs",
+    "next_state": "Customs Cleared",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Customs Cleared",
+    "action": "Assign to Operations",
+    "next_state": "Ops Assigned",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Ops Assigned",
+    "action": "Start Unloading",
+    "next_state": "Unloading",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Unloading",
+    "action": "Confirm Placement",
+    "next_state": "Goods Placed",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Goods Placed",
+    "action": "Invoice",
+    "next_state": "Invoiced",
+    "allowed": "WMS Finance",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Invoiced",
+    "action": "Close File",
+    "next_state": "Completed",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Invoiced",
+    "action": "Cancel",
+    "next_state": "Cancelled",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   }
+  ]
+ },
+ {
+  "doctype": "Workflow",
+  "name": "WMS Export File",
+  "workflow_name": "WMS Export File",
+  "document_type": "Export File",
+  "workflow_state_field": "status",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "override_status": 0,
+  "states": [
+   {
+    "doctype": "Workflow Document State",
+    "state": "Draft",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Documentation Review",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Picking",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Loading Scheduled",
+    "doc_status": "0",
+    "allow_edit": "WMS Manager"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Loaded",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Sealed",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Invoiced",
+    "doc_status": "0",
+    "allow_edit": "WMS Finance"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Transport Assigned",
+    "doc_status": "0",
+    "allow_edit": "WMS Manager"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Dispatched",
+    "doc_status": "1",
+    "allow_edit": "WMS Manager"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Delivered",
+    "doc_status": "1",
+    "allow_edit": "WMS Manager"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Cancelled",
+    "doc_status": "2",
+    "allow_edit": "WMS Manager"
+   }
+  ],
+  "transitions": [
+   {
+    "doctype": "Workflow Transition",
+    "state": "Draft",
+    "action": "Submit for Documentation",
+    "next_state": "Documentation Review",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Documentation Review",
+    "action": "Reject",
+    "next_state": "Draft",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Documentation Review",
+    "action": "Start Picking",
+    "next_state": "Picking",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Picking",
+    "action": "Schedule Loading",
+    "next_state": "Loading Scheduled",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Loading Scheduled",
+    "action": "Confirm Loading",
+    "next_state": "Loaded",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Loaded",
+    "action": "Seal Containers",
+    "next_state": "Sealed",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Sealed",
+    "action": "Invoice",
+    "next_state": "Invoiced",
+    "allowed": "WMS Finance",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Invoiced",
+    "action": "Assign Transport",
+    "next_state": "Transport Assigned",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Transport Assigned",
+    "action": "Dispatch",
+    "next_state": "Dispatched",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Dispatched",
+    "action": "Confirm Delivery",
+    "next_state": "Delivered",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Dispatched",
+    "action": "Cancel",
+    "next_state": "Cancelled",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   }
+  ]
+ },
+ {
+  "doctype": "Workflow",
+  "name": "WMS Stock Adjustment",
+  "workflow_name": "WMS Stock Adjustment",
+  "document_type": "Stock Adjustment",
+  "workflow_state_field": "status",
+  "is_active": 1,
+  "send_email_alert": 0,
+  "override_status": 0,
+  "states": [
+   {
+    "doctype": "Workflow Document State",
+    "state": "Draft",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Pending Approval",
+    "doc_status": "0",
+    "allow_edit": "WMS User"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Rejected",
+    "doc_status": "0",
+    "allow_edit": "WMS Manager"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Approved",
+    "doc_status": "1",
+    "allow_edit": "WMS Manager"
+   },
+   {
+    "doctype": "Workflow Document State",
+    "state": "Cancelled",
+    "doc_status": "2",
+    "allow_edit": "WMS Manager"
+   }
+  ],
+  "transitions": [
+   {
+    "doctype": "Workflow Transition",
+    "state": "Draft",
+    "action": "Submit for Approval",
+    "next_state": "Pending Approval",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Pending Approval",
+    "action": "Approve",
+    "next_state": "Approved",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Pending Approval",
+    "action": "Reject",
+    "next_state": "Rejected",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Rejected",
+    "action": "Revise",
+    "next_state": "Draft",
+    "allowed": "WMS User",
+    "allow_self_approval": 1
+   },
+   {
+    "doctype": "Workflow Transition",
+    "state": "Approved",
+    "action": "Cancel",
+    "next_state": "Cancelled",
+    "allowed": "WMS Manager",
+    "allow_self_approval": 1
+   }
+  ]
+ }
+]

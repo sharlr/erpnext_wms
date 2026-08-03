@@ -111,9 +111,11 @@
    "default": "Draft",
    "fieldname": "status",
    "fieldtype": "Select",
+   "in_standard_filter": 1,
    "label": "Status",
    "no_copy": 1,
-   "options": "Draft\nSubmitted\nIn Progress\nCompleted"
+   "options": "Draft\nDocumentation Review\nPicking\nLoading Scheduled\nLoaded\nSealed\nInvoiced\nTransport Assigned\nDispatched\nDelivered\nCancelled",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",

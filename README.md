@@ -2,7 +2,7 @@
 
 Warehouse Management System app for ERPNext v16+.
 
-**Last pushed:** 2026-08-03 01:51 +03:00
+**Last pushed:** 2026-08-03 09:40 +03:00
 
 ## Modules
 
@@ -25,6 +25,11 @@ Warehouse Management System app for ERPNext v16+.
 - **WMS Invoicing** — aggregates submitted Payment Vouchers for a file, posts a
   Journal Entry against the customer receivable on submit
 - **Payment Vouchers** — per-file vendor payment tracking
+- **Workflows** — Import File, Export File and Stock Adjustment are governed by
+  Frappe Workflows with role-gated transitions. Stock Adjustment requires WMS
+  Manager approval before it posts to the ledger. Assign **WMS User**, **WMS
+  Finance** and **WMS Manager** to your users — without a matching role no
+  action buttons appear on the form.
 - **3D warehouse visualisation** — bin occupancy viewer at
   `/assets/erpnext_wms/warehouse-visualization.html`
 

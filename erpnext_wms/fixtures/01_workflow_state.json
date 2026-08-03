@@ -1,0 +1,116 @@
+[
+ {
+  "doctype": "Workflow State",
+  "name": "Draft",
+  "workflow_state_name": "Draft",
+  "style": ""
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Documentation Review",
+  "workflow_state_name": "Documentation Review",
+  "style": "Warning"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Customs Cleared",
+  "workflow_state_name": "Customs Cleared",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Ops Assigned",
+  "workflow_state_name": "Ops Assigned",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Unloading",
+  "workflow_state_name": "Unloading",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Goods Placed",
+  "workflow_state_name": "Goods Placed",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Invoiced",
+  "workflow_state_name": "Invoiced",
+  "style": "Primary"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Completed",
+  "workflow_state_name": "Completed",
+  "style": "Success"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Cancelled",
+  "workflow_state_name": "Cancelled",
+  "style": "Danger"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Picking",
+  "workflow_state_name": "Picking",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Loading Scheduled",
+  "workflow_state_name": "Loading Scheduled",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Loaded",
+  "workflow_state_name": "Loaded",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Sealed",
+  "workflow_state_name": "Sealed",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Transport Assigned",
+  "workflow_state_name": "Transport Assigned",
+  "style": "Info"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Dispatched",
+  "workflow_state_name": "Dispatched",
+  "style": "Primary"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Delivered",
+  "workflow_state_name": "Delivered",
+  "style": "Success"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Pending Approval",
+  "workflow_state_name": "Pending Approval",
+  "style": "Warning"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Rejected",
+  "workflow_state_name": "Rejected",
+  "style": "Danger"
+ },
+ {
+  "doctype": "Workflow State",
+  "name": "Approved",
+  "workflow_state_name": "Approved",
+  "style": "Success"
+ }
+]

@@ -36,10 +36,6 @@ class ExportFile(Document):
 		self.total_weight = total_weight
 		self.total_value = total_value
 
-	def on_submit(self):
-		# db_set rather than save(): the document is already submitted here, so
-		# save() would raise UpdateAfterSubmitError
-		self.db_set("status", "Submitted")
-
-	def on_cancel(self):
-		self.db_set("status", "Draft")
+	# status is owned by the "WMS Export File" workflow -- model/workflow.py
+	# writes the state straight into the field, so the controller must not
+	# fight it with its own db_set()
